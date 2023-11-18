@@ -20,6 +20,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.8"
 boto3 = "^1.29.3"
+requests = "^2.31.0"
 
 [tool.poetry.dev-dependencies]
 bandit = {extras = ["toml"], version = "*"}
