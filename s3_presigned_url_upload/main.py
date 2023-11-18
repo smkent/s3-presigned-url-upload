@@ -118,6 +118,13 @@ class S3PresignedURLMain:
                 timeout=30,
             )
         print("Upload response: ", upload_response)
+        if not upload_response.ok:
+            print("Response headers:")
+            for k, v in upload_response.headers.items():
+                print(f"    {k}: {v}")
+            print("Response body:")
+            print("----")
+            print(upload_response.text)
 
 
 def main() -> None:
