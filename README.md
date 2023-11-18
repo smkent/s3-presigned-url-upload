@@ -4,6 +4,42 @@
 [![codecov](https://codecov.io/gh/smkent/s3-presigned-url-upload/branch/main/graph/badge.svg)][codecov]
 [![GitHub stars](https://img.shields.io/github/stars/smkent/s3-presigned-url-upload?style=social)][repo]
 
+This is a utility project to test presigned URLs with an S3 bucket, particularly
+for testing object upload using a presigned POST request URL and parameters.
+
+Access keys, secret keys, and the bucket base URL are reused from `s3cmd`'s
+configuration file, `~/.s3cfg`.
+
+## Invocation
+
+### Usage with Poetry (recommended)
+
+```console
+poetry install
+poetry run s3-presigned-url-upload
+```
+
+### Usage with pip
+
+```console
+pip install boto3 requests
+python s3_presigned_url_upload/main.py
+```
+
+## Usage
+
+To generate a presigned POST request upload URL and parameters:
+
+```console
+poetry run s3-presigned-url-upload upload -b my-bucket -f dest-object-name.txt
+```
+
+To generate and execute a presigned POST request upload URL and parameters:
+
+```console
+poetry run s3-presigned-url-upload upload -b my-bucket -f dest-object-name.txt -l local-file-to-upload.txt
+```
+
 ## Development
 
 ### [Poetry][poetry] installation
