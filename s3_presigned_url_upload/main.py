@@ -89,6 +89,7 @@ class S3PresignedURLMain:
         getattr(self, f"action_{self.args.action}")()
 
     def action_download(self) -> None:
+        print("Creating signed download URL")
         url = self.s3_client.generate_presigned_url(
             "get_object",
             Params={"Bucket": self.bucket_name, "Key": self.object_name},
@@ -97,6 +98,7 @@ class S3PresignedURLMain:
         print(url)
 
     def action_upload(self) -> None:
+        print("Creating signed upload parameters")
         upload_info = self.s3_client.generate_presigned_post(
             self.bucket_name, self.object_name, ExpiresIn=self.args.expires
         )
@@ -113,6 +115,7 @@ class S3PresignedURLMain:
                 upload_info["url"],
                 data=upload_info["fields"],
                 files={"file": (self.object_name, f)},
+                timeout=30,
             )
         print("Upload response: ", upload_response)
 
